@@ -9,7 +9,7 @@
 }
 
 body {
-    background: url('/raw-img/viva-luna-studios-0-7oZdFHf-I-unsplash.jpg') no-repeat center center fixed;
+    background: url('raw-img/viva-luna-studios-0-7oZdFHf-I-unsplash.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #333;
     display: flex;
