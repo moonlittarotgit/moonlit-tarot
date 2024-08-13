@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const spinner = document.getElementById('spinner');
 
     function updateCountdown() {
-        const launchDate = new Date('August 15, 2024 00:00:00').getTime();
+        const launchDate = new Date('August 21, 2024 00:00:00').getTime();
         const now = new Date().getTime();
         const timeDifference = launchDate - now;
 
