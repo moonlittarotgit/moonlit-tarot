@@ -246,6 +246,12 @@ body {
     background-color: #900808;
 }
 
+@media (max-width: 700px){
+    .cta-booking-btn a{
+        font-size: 20px;
+    }
+}
+
 .tnc-link a {
     text-decoration: none;
     font-family: 'Roboto';
