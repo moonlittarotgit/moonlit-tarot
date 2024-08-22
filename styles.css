@@ -26,6 +26,12 @@ body {
     padding: 0 45px;
 }
 
+@media (max-width: 700px){
+    .nav-header{
+        padding: 20px;
+    }
+}
+
 .logo img {
     width: 315px;
     height: 40px;
