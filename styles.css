@@ -1,0 +1,866 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.nav-header {
+    z-index: 1000;
+    background-color: #ffffff;
+    width: 100%;
+    height: 85px;
+    box-shadow: 0px 4px 16px 0px #00000025;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+}
+
+.logo img {
+    width: 315px;
+    height: 40px;
+    user-select: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    width: 100%;
+}
+
+.nav-links ul li {
+    margin: 0 15px;
+}
+
+.nav-links ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    left: 0;
+    background: #000000;
+    transition: width 0.2s ease, left 0.2s ease;
+}
+
+.nav-links ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.head-book-btn a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #f5d312, #FE8104);
+    color: white;
+    border-radius: 50px;
+    margin-left: 15px;
+    white-space: nowrap;
+}
+
+.head-book-btn a:hover {
+    background: linear-gradient(to left, #f5d312, #FE8104);
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: #000;
+    height: 3px;
+    width: 25px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.nav-toggle-label span::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+}
+
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+}
+
+/* When the nav toggle is checked (open) */
+.nav-toggle:checked ~ .nav-header .nav-links {
+    display: block;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    width: 100%; /* Ensure the background covers the full width */
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.nav-toggle:checked ~ .nav-header .nav-links ul {
+    display: block;
+    padding-left: 0;
+    width: 100%; /* Ensure ul width is 100% */
+}
+
+.nav-toggle:checked ~ .nav-header .nav-links ul li {
+    margin: 15px 0; /* Increase spacing between links */
+}
+
+/* Center the CTA button in the mobile menu */
+.nav-toggle:checked ~ .nav-header .head-book-btn {
+    text-align: center;
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+
+.nav-toggle:checked ~ .nav-header .head-book-btn a {
+    margin: 0 auto;
+}
+
+@media (max-width: 1100px) {
+    .nav-toggle-label {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        width: 100%; /* Ensure the background covers the full width in mobile */
+    }
+
+    .logo img {
+        width: 156px;
+        height: 20px;
+        user-select: none;
+    }
+
+    .head-book-btn {
+        margin-left: auto;
+    }
+
+    .head-book-btn a {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
+
+
+/* General container setup */
+.home-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 85px); /* Adjust height to account for header */
+    padding-top: 85px; /* Offset the fixed header height */
+    justify-content: space-between;
+}
+
+/* Left section styling */
+.left-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 50px;
+    padding-left: 70px;
+    z-index: 2; /* Ensure the text is above the image */
+}
+
+.left-section h1 {
+    color: black;
+    font-family: 'Economica';
+    font-size: 37px;
+    font-weight: bold;
+    line-height: 43px;
+    margin-bottom: 0;
+}
+
+.left-section p {
+    font-family: 'Economica';
+    font-size: 25px;
+    margin: 15px 0;
+}
+
+/* CTA and TnC styling */
+.cta-tnc-box {
+    width: 336px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta-booking-btn a {
+    background-color: #B20908;
+    padding: 8px 30px;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: 100;
+    border-radius: 4px;
+    color: white;
+}
+
+.cta-booking-btn a:hover {
+    background-color: #900808;
+}
+
+.tnc-link a {
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-size: 15px;
+}
+
+.tnc-link a:hover {
+    text-decoration: underline;
+}
+
+/* Right section styling */
+.right-section {
+    flex: 1 1 40%;
+    overflow: hidden;
+    position: relative;
+}
+
+.right-section .back-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: brightness(80%);
+}
+
+.right-section .back-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive design */
+@media (max-width: 1100px) {
+    .home-container {
+        flex-direction: column;
+    }
+
+    .left-section {
+        padding: 30px 20px;
+        order: 2;
+        align-items: center;
+    }
+
+    .right-section {
+        height: 60vh;
+        order: 1;
+        width: 100%;
+    }
+
+    .right-section .back-img img {
+        object-position: center;
+    }
+
+    .left-section h1 {
+        color: rgb(0, 0, 0); /* Change the text color to ensure visibility over the image */
+    }
+}
+
+@media (max-width: 768px) {
+    .left-section h1 {
+        font-size: 35px;
+    }
+
+    .left-section p {
+        font-size: 25px;
+    }
+}
+
+.txt-ribbon{
+    width: 100%;
+    background-color: #DEB84B;
+}
+
+.txt-ribbon h1{
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+    font-family: 'Economica';
+    font-size: 40px;
+    color: white;
+    letter-spacing: 4px;
+}
+
+@media (max-width: 800px){
+    .txt-ribbon h1{
+        font-size: 30px;
+        letter-spacing: 2px; 
+    }
+}
+
+.page-2-para-wrapper {
+    background-color: #F1F1F1; /* Set the background color for the entire section */
+    padding: 40px 0; /* Add padding to create space on top and bottom */
+}
+
+.page-2-para {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 172px; /* Padding to create space between the sides and the content */
+    background-color: #F1F1F1; /* Set background color */
+}
+
+.img-content .txt-content {
+    display: flex;
+    align-items: center; /* Center the items vertically */
+}
+
+.img-content img {
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+    object-fit: cover; /* Ensure the image remains a square without stretching */
+    display: block; /* Remove any inline-block default spacing */
+    user-select: none;
+    pointer-events: none;
+}
+
+.txt-content{
+    margin-left: 60px;
+}
+
+.txt-content h1{
+    font-family: 'Economica';
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.txt-content p{
+    font-family: 'Economica';
+    font-size: 25px;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+
+.txt-content a{
+    background-color: #B20908;
+    padding: 8px 50px;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    border-radius: 4px;
+    color: white;
+}
+
+.txt-content a:hover{
+    background-color: #900808;
+}
+
+@media (max-width: 1000px){
+    .page-2-para {
+        flex-direction: column; /* Stack items vertically */
+        padding: 0 20px; /* Adjust side padding for smaller screens */
+        text-align: center; /* Center align text for smaller screens */
+    }
+
+    .img-content {
+        margin-bottom: 20px; /* Add space between image and text */
+    }
+
+    .txt-content {
+        margin-left: 0; /* Reset left margin */
+    }
+
+    .img-content img {
+        width: 500px; /* Make image responsive */
+        height: 250px; /* Maintain aspect ratio */
+        margin: 10px 0px; /* Center align image */
+    }
+
+    .txt-content h1, .txt-content p, .txt-content a {
+        margin-left: 0; /* Reset margins */
+        margin-right: 0; /* Reset margins */
+    }
+
+    .txt-content a {
+        width: 100%; /* Make button responsive */
+        padding: 8px 30px; /* Adjust padding for button */
+    }
+}
+
+/*Responsive css for ad-banner */
+.ad-banner{
+    background-color: #F1F1F1; /* Set the background color for the entire section */
+    padding: 40px 0; /* Add padding to create space on top and bottom */
+}
+
+.banner-content{
+    text-align: center;
+}
+
+.banner-content h1{
+    font-family: 'Georgia';
+    font-size: 73px;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.banner-content h2{
+    font-family: 'Georgia';
+    font-size: 45px;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.cut-txt{
+    color: #A7A7A7;
+    text-decoration: line-through 3px;
+}
+
+.red-txt{
+    color: #E50000;
+}
+
+@media (max-width: 1100px) {
+
+    .ad-banner{
+        padding: 20px 0;
+    }
+
+    .banner-content h1{
+        font-size: 50px;
+    }
+
+    .banner-content h2{
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .ad-banner{
+        padding: 20px 0;
+    }
+
+    .banner-content h1{
+        font-size: 40px;
+    }
+
+    .banner-content h2{
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .ad-banner{
+        padding: 20px 0;
+    }
+
+    .banner-content h1{
+        font-size: 30px;
+    }
+
+    .banner-content h2{
+        font-size: 26px;
+    }
+}
+
+/* CSS for services section */
+.page-3-services {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1200px; /* Adjust this based on your page width */
+    padding: 20px;
+}
+
+.page-3-services h1 {
+    font-family: 'Economica';
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.page-3-services p {
+    font-family: 'Economica';
+    font-size: 25px;
+    font-weight: lighter;
+    margin-bottom: 50px;
+}
+
+.services-card-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px; /* Space between rows */
+    gap: 40px; /* Space between cards */
+}
+
+.services-card {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 280px; /* Adjust card width as needed */
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.services-card h3 {
+    font-size: 35px;
+    font-family: 'Economica';
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.services-card p {
+    font-family: 'Economica';
+    font-size: 19px;
+    font-weight: lighter;
+}
+
+.services-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styling for service cards */
+@media (max-width: 800px) {
+    .services-card-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.testimonial-container {
+    text-align: center;
+    padding: 40px;
+}
+
+.testimonial-container h1 {
+    font-family: 'Economica';
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.tsm-cards {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 50px 0px;
+}
+
+.tsm-card {
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+    text-align: left;
+    max-width: 600px;
+}
+
+.tsm-card::before {
+    content: url('/resources/web-illustrations/teenyicons_quote-solid.svg'); /* Add link to the quotation mark SVG */
+    position: absolute;
+    top: 20px;
+    left: 25px;
+}
+
+.tsm-card p {
+    font-family: 'Roboto';
+    font-weight: lighter;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #333;
+    margin-top: 50px; /* Adjust this margin to position the text correctly */
+    margin-bottom: 10px;
+}
+
+.tsm-stars{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tsm-stars img{
+    margin: 0px 5px;
+}
+
+.tsm-card h3{
+    font-family: 'Roboto';
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+@media (max-width: 1000px){
+    .testimonial-container{
+        padding: 20px;
+    }
+
+    .tsm-cards {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* CSS for xarch branding */
+.xarch-ad{
+    background-color: #E6F0FF;
+}
+
+.xarch-ad h3{
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 13px;
+    color: #0059DC;
+    padding: 5px;
+    margin: 0px;
+}
+
+.xarch-ad a{
+    text-decoration: none;
+}
+
+.xarch-ad a:hover{
+    text-decoration: underline;
+}
+
+/* Responsive css designs for footer container */
+footer {
+    background-color: #f1f1f1;
+    padding: 30px 80px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 100px;
+}
+
+.ql-tl-section{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.contact-us{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contact-us h3{
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.contact-us p{
+    font-family: 'Poppins';
+    font-size: 17px;
+    width: 320px;
+}
+
+.contact-us a{
+    font-family: 'Poppins';
+    font-size: 17px;
+    text-decoration: underline;
+    margin: 0 5px;
+}
+
+.contact-us a:hover{
+    text-decoration: none;
+}
+
+.transform-life{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.transform-life p{
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+
+.quick-links h3{
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 20px;
+    width: 110px;
+}
+
+.quick-links ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.quick-links ul li{
+    font-family: 'Poppins';
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+/* underline for a in list */
+.quick-links a{
+    text-decoration: none;
+}
+
+.quick-links a:hover{
+    text-decoration: underline;
+}
+
+.social-media {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 20px; /* Add margin to separate social icons on smaller screens */
+}
+
+.social-media h3 {
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.social-media a {
+    margin-right: 10px;
+}
+
+
+.social-media img:hover{
+    border: dotted black 2px;
+    border-radius: 100%;
+}
+
+
+footer .copyright {
+    text-align: right;
+    color: #777;
+    font-size: 14px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow footer bottom to wrap on smaller screens */
+    margin-top: 20px;
+}
+
+@media (max-width: 1000px) {
+    footer{
+        padding: 30px;
+    }
+    .footer-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+        gap: 10px;
+    }
+
+    .ql-tl-section{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer .footer-container > div {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    footer .copyright {
+        text-align: center; /* Center the copyright text on smaller screens */
+        margin-top: 20px;
+    }
+
+    footer .social-media {
+        justify-content: center; /* Center social icons on smaller screens */
+        margin-bottom: 10px;
+    }
+
+    .transform-life{
+        align-items: center;
+     }
+
+    .transform-life p{
+        font-size: 17px;
+        text-align: center;
+    }
+
+    footer .footer-bottom {
+        flex-direction: column; /* Stack footer bottom items vertically */
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    footer p, footer a {
+        font-size: 14px; /* Reduce font size for very small screens */
+    }
+
+    footer h3 {
+        font-size: 16px;
+    }
+
+    footer .social-media img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+

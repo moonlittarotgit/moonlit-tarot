@@ -1,0 +1,591 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Header styles */
+.nav-header {
+    z-index: 1000;
+    background-color: #fff;
+    width: 100%;
+    height: 85px;
+    box-shadow: 0px 4px 16px 0px #00000025;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+}
+
+.logo img {
+    width: 200px;
+    user-select: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links ul li {
+    margin: 0 15px;
+}
+
+.nav-links ul li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    left: 0;
+    background: #000;
+    transition: width 0.2s ease, left 0.2s ease;
+}
+
+.nav-links ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.head-book-btn a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #e7c714, #FE8104);
+    color: white;
+    border-radius: 50px;
+    margin-left: 15px;
+}
+
+.head-book-btn a:hover {
+    background: linear-gradient(to left, #e7c714, #FE8104);
+}
+
+/* Responsive header styles */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: #000;
+    height: 3px;
+    width: 25px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before {
+    top: -8px;
+}
+
+.nav-toggle-label span::after {
+    top: 8px;
+}
+
+.nav-toggle:checked + .nav-header .nav-links {
+    display: block;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.nav-toggle:checked + .nav-header .nav-links ul {
+    display: block;
+}
+
+.nav-toggle:checked + .nav-header .nav-links ul li {
+    margin: 15px 0;
+}
+
+/* Home container styles */
+.home-container {
+    display: flex;
+    height: calc(100vh - 85px);
+    padding-top: 85px;
+}
+
+.left-section {
+    width: 40%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 50px;
+}
+
+.left-section h1 {
+    color: black;
+    font-family: 'Economica';
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+.left-section p {
+    font-family: 'Economica';
+    font-size: 1.5em;
+    margin-top: 15px;
+}
+
+.cta-booking-btn {
+    margin-top: 10px;
+}
+
+.cta-booking-btn a {
+    background-color: #B20908;
+    padding: 8px 30px;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 1.5em;
+    font-weight: 100;
+    border-radius: 4px;
+    color: white;
+}
+
+.cta-booking-btn a:hover {
+    background-color: #900808;
+}
+
+.right-section {
+    width: 60%;
+    overflow: hidden;
+    position: relative;
+}
+
+.right-section .back-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    filter: brightness(80%);
+}
+
+.right-section .back-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive home container styles */
+@media (max-width: 1000px) {
+    .nav-toggle-label {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .home-container {
+        flex-direction: column;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .left-section h1 {
+        font-size: 1.5em;
+    }
+
+    .left-section p, .cta-booking-btn a {
+        font-size: 1.2em;
+    }
+
+    .right-section .back-img img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Quote ribbon styles */
+.txt-ribbon {
+    width: 100%;
+    background-color: #DEB84B;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.txt-ribbon h1 {
+    font-family: 'Economica';
+    font-size: 2.5em;
+    color: white;
+    letter-spacing: 4px;
+}
+
+/* Responsive quote ribbon styles */
+@media (max-width: 1000px) {
+    .txt-ribbon h1 {
+        font-size: 1.5em;
+    }
+}
+
+
+.home-container {
+    display: flex;
+    height: calc(100vh - 85px); /* Adjust height to account for header */
+    padding-top: 85px; /* Offset the fixed header height */
+    justify-content: center;
+}
+
+.left-section {
+    width: 600px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 50px;
+    padding-left: 70px;
+}
+
+.left-section h1 {
+    color: black;
+    font-family: 'Economica';
+    font-size: 37px;
+    font-weight: bold;
+    line-height: 43px;
+    margin-bottom: 0;
+}
+
+.left-section p {
+    font-family: 'Economica';
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+/* responsive css design for section 2 cta button and tnc link */
+.cta-tnc-box{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta-booking-btn a{
+    background-color: #B20908;
+    padding: 8px 30px;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: 100q;
+    border-radius: 4px;
+    color: white;
+}
+
+.cta-booking-btn a:hover{
+    background-color: #900808;
+}
+
+.tnc-link a{
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-size: 15px;
+}
+
+.tnc-link a:hover{
+    text-decoration: underline;
+}
+
+.right-section {
+    width: 60%;
+    overflow: hidden;
+    position: relative;
+}
+
+.right-section .back-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    filter: brightness(80%);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.right-section .back-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the entire container */
+    display: block;
+}
+
+/*Responsive Header styles */
+.nav-header {
+    z-index: 1000;
+    background-color: #ffffff;
+    width: 100%;
+    height: 85px;
+    box-shadow: 0px 4px 16px 0px #00000025;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+}
+
+.logo img {
+    width: 315px;
+    height: 40px;
+    user-select: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links ul li {
+    margin: 0 15px;
+}
+
+.nav-links ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 5px; /* padding for the underline effect */
+}
+
+.nav-links ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    left: 0;
+    background: #000000;
+    transition: width 0.2s ease, left 0.2s ease;
+}
+
+.nav-links ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-links ul li a:not(:hover)::after {
+    width: 0;
+    left: auto;
+    right: 0;
+}
+
+.head-book-btn a{
+    text-decoration: none;
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #f5d312, #FE8104);
+    color: white;
+    border-radius: 50px;
+    margin-left: 15px;
+}
+
+.head-book-btn a:hover{
+    background: linear-gradient(to left, #f5d312, #FE8104);
+}
+
+/* Responsive header styles */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: #000;
+    height: 3px;
+    width: 25px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before {
+    top: -8px;
+}
+
+.nav-toggle-label span::after {
+    top: 8px;
+}
+
+.nav-toggle:checked + .nav-header .nav-links {
+    display: block;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.nav-toggle:checked + .nav-header .nav-links ul {
+    display: block;
+}
+
+.nav-toggle:checked + .nav-header .nav-links ul li {
+    margin: 15px 0;
+}
+
+/* Responsive home container styles */
+@media (max-width: 1100px) {
+    .nav-toggle-label {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo img {
+        width: 156px;
+        height: 20px;
+        user-select: none;
+    }
+}
+
+/* responsive css design for hero flax container  */
+.hero-flex-box{
+    padding: 0;
+    background-color: #F1F1F1;
+}
+
+.img-txt-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 50px;
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.img-container img{
+    width: 430px;
+    height: 430px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.head-txt-container{
+    align-content: center;
+}
+
+.head-txt-container h1{
+    font-family: 'Economica';
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.head-txt-container p{
+    font-family: 'Economica';
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.hero-flex-box-2{
+    padding: 0;
+    background-color: white;
+}
+
+/* responsive css design for section 2 cta button and tnc link */
+.cta-tnc-box{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta-booking-btn a{
+    background-color: #B20908;
+    padding: 8px 30px;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: 100q;
+    border-radius: 4px;
+    color: white;
+}
+
+.cta-booking-btn a:hover{
+    background-color: #900808;
+}
+
+.tnc-link a{
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-size: 15px;
+}
+
+.tnc-link a:hover{
+    text-decoration: underline;
+}

@@ -1,0 +1,186 @@
+/* Responsive css designs for footer container */
+footer {
+    background-color: #f1f1f1;
+    padding: 30px 80px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 100px;
+}
+
+.ql-tl-section{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.contact-us{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contact-us h3{
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.contact-us p{
+    font-family: 'Poppins';
+    font-size: 17px;
+    width: 320px;
+}
+
+.contact-us a{
+    font-family: 'Poppins';
+    font-size: 17px;
+    text-decoration: underline;
+    margin: 0 5px;
+}
+
+.contact-us a:hover{
+    text-decoration: none;
+}
+
+.transform-life{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.transform-life p{
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+
+.quick-links h3{
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 20px;
+    width: 110px;
+}
+
+.quick-links ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.quick-links ul li{
+    font-family: 'Poppins';
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+/* underline for a in list */
+.quick-links a{
+    text-decoration: none;
+}
+
+.quick-links a:hover{
+    text-decoration: underline;
+}
+
+.social-media {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 20px; /* Add margin to separate social icons on smaller screens */
+}
+
+.social-media h3 {
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.social-media a {
+    margin-right: 10px;
+}
+
+
+.social-media img:hover{
+    border: dotted black 2px;
+    border-radius: 100%;
+}
+
+
+footer .copyright {
+    text-align: right;
+    color: #777;
+    font-size: 14px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow footer bottom to wrap on smaller screens */
+    margin-top: 20px;
+}
+
+@media (max-width: 1000px) {
+    footer{
+        padding: 30px;
+    }
+    .footer-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+        gap: 10px;
+    }
+
+    .ql-tl-section{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer .footer-container > div {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    footer .copyright {
+        text-align: center; /* Center the copyright text on smaller screens */
+        margin-top: 20px;
+    }
+
+    footer .social-media {
+        justify-content: center; /* Center social icons on smaller screens */
+        margin-bottom: 10px;
+    }
+
+    .transform-life{
+        align-items: center;
+     }
+
+    .transform-life p{
+        font-size: 17px;
+        text-align: center;
+    }
+
+    footer .footer-bottom {
+        flex-direction: column; /* Stack footer bottom items vertically */
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    footer p, footer a {
+        font-size: 14px; /* Reduce font size for very small screens */
+    }
+
+    footer h3 {
+        font-size: 16px;
+    }
+
+    footer .social-media img {
+        width: 25px;
+        height: 25px;
+    }
+}
