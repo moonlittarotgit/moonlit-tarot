@@ -231,7 +231,6 @@ body {
 
 /* CTA and TnC styling */
 .cta-tnc-box {
-    width: 336px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -246,6 +245,7 @@ body {
     font-weight: 100;
     border-radius: 4px;
     color: white;
+    white-space: nowrap;
 }
 
 .cta-booking-btn a:hover {
@@ -302,7 +302,7 @@ body {
     }
 
     .left-section {
-        padding: 30px 20px;
+        padding: 20px;
         order: 2;
         align-items: center;
     }
@@ -324,7 +324,7 @@ body {
 
 @media (max-width: 768px) {
     .left-section h1 {
-        font-size: 35px;
+        font-size: 32px;
     }
 
     .left-section p {
@@ -586,6 +586,11 @@ body {
         flex-direction: column;
         align-items: center;
     }
+
+    .page-3-services h1{
+        font-size: 40px;
+    }
+        
 }
 
 .testimonial-container {
@@ -618,7 +623,7 @@ body {
 }
 
 .tsm-card::before {
-    content: url('/resources/web-illustrations/teenyicons_quote-solid.svg'); /* Add link to the quotation mark SVG */
+    content: url('/web-illustrations/teenyicons_quote-solid.svg'); /* Add link to the quotation mark SVG */
     position: absolute;
     top: 20px;
     left: 25px;
@@ -656,6 +661,10 @@ body {
 @media (max-width: 1000px){
     .testimonial-container{
         padding: 20px;
+    }
+
+    .testimonial-container h1{
+        font-size: 40px;
     }
 
     .tsm-cards {
@@ -817,7 +826,7 @@ footer .copyright {
 
 @media (max-width: 1000px) {
     footer{
-        padding: 30px;
+        padding: 30px 20px;
     }
     .footer-container {
         flex-direction: column; /* Stack sections vertically on smaller screens */
@@ -850,7 +859,6 @@ footer .copyright {
 
     .transform-life p{
         font-size: 17px;
-        text-align: center;
     }
 
     footer .footer-bottom {
