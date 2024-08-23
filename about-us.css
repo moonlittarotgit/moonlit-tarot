@@ -36,7 +36,8 @@
 
 @media (max-width: 1000px){
     .img-center-txt{
-        font-size: 70px;
+        white-space: nowrap;
+        font-size: 43px;
     }
 }
 
