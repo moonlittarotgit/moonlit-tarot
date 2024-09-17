@@ -18,7 +18,7 @@ form.addEventListener('submit', e => {
     })
     .then(response => response.text())
     .then(result => {
-        notificationElement.innerHTML = 'Thank you! We will contact you soon.';
+        notificationElement.innerHTML = 'Thank you! We will contact you within 24 hours.';
         form.reset(); // Clear the form after submission
     })
     .catch(error => {
