@@ -31,6 +31,20 @@ form.addEventListener('submit', e => {
     });
 });
 
+function closeBanner() {
+  const banner = document.getElementById("top-banner");
+  banner.style.transform = "translateY(-100%)"; // Slide banner up
+  document.body.classList.remove("with-banner");
+
+  setTimeout(() => {
+    banner.remove(); // Remove banner completely after animation
+  }, 300); // Matches the CSS animation time
+}
+
+// Add margin for content when the banner is visible
+document.body.classList.add("with-banner");
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
