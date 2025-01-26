@@ -13,6 +13,72 @@ body {
     overflow: hidden;
 }
 
+/* Banner Styles */
+.top-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensures it stays on top */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: slide-down 0.3s ease-out;
+}
+
+.banner-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.close-banner {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.close-banner i {
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.close-banner:hover i {
+  transform: scale(1.2);
+}
+
+/* Animation for sliding the banner in */
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Body margin for banner */
+body.with-banner {
+  margin-top: 40px;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .banner-text {
+    font-size: 14px;
+  }
+}
+
 .nav-header {
     z-index: 1000;
     background-color: #ffffff;
