@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Book a Tarot Reading – Moonlit Tarot</title>
+    <link rel="icon" type="image/x-icon" href="/moonlit-tarot-favicon-color (1).png">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Economica', sans-serif;
+        }
+
+        .font-economica {
+            font-family: 'Economica', sans-serif;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s cubic-bezier(.39, .58, .57, 1) both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button-animate {
+            transition: transform 0.2s cubic-bezier(.39, .58, .57, 1), box-shadow 0.2s cubic-bezier(.39, .58, .57, 1);
+        }
+
+        .button-animate:hover {
+            transform: scale(1.04) translateY(-2px);
+            box-shadow: 0 8px 24px 0 rgba(255, 179, 0, 0.15), 0 1.5px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body class="bg-[#f7f2ed] min-h-screen text-[#222]">
+
+    <nav class="fixed top-0 w-full z-50 bg-[#1a0f1a]/95 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+            <!-- Logo -->
+            <a href="/" class="flex items-center">
+                <img src="moonlit-tarot-high-resolution-logo-transparent.png" alt="Moonlit Tarot Logo"
+                    class="h-10 md:h-12 w-auto object-contain" style="max-height:30px;" />
+            </a>
+            <!-- Desktop Nav Links -->
+            <ul class="hidden md:flex space-x-8 font-poppins">
+                <li>
+                    <a href="#home"
+                        class="text-purple-200 px-4 py-2 rounded-full hover:bg-purple-100/20 transition">Home</a>
+                </li>
+                <li>
+                    <a href="/about.html"
+                        class="text-purple-200 px-4 py-2 rounded-full hover:bg-purple-100/20 transition">About</a>
+                </li>
+                <li>
+                    <a href="#services"
+                        class="text-purple-200 px-4 py-2 rounded-full hover:bg-purple-100/20 transition">Services</a>
+                </li>
+            </ul>
+            <a href="book.html"
+                class="hidden md:inline-block ml-6 bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-white font-semibold py-2 px-6 rounded-full shadow hover:from-yellow-500 hover:to-pink-500 transition font-poppins">
+                Book a Reading
+            </a>
+            <!-- Hamburger Button (Mobile) -->
+            <button id="nav-toggle"
+                class="flex md:hidden items-center justify-center h-10 w-10 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition">
+                <svg class="w-7 h-7 text-purple-200" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu (hidden by default) -->
+        <div id="mobile-menu"
+            class="md:hidden absolute right-6 top-[70px] w-56 bg-[#1a0f1a] rounded-xl shadow-lg border border-purple-900 transition-all duration-300 opacity-0 pointer-events-none z-40">
+            <ul class="flex flex-col font-poppins divide-y divide-purple-900">
+                <li>
+                    <a href="/index.html"
+                        class="block text-purple-200 text-base px-6 py-4 hover:bg-purple-100/10 rounded-t-xl transition"
+                        onclick="closeMenu()">Home</a>
+                </li>
+                <li>
+                    <a href="/about.html"
+                        class="block text-purple-200 text-base px-6 py-4 hover:bg-purple-100/10 transition"
+                        onclick="closeMenu()">About</a>
+                </li>
+                <li>
+                    <a href="index.html#services"
+                        class="block text-purple-200 text-base px-6 py-4 hover:bg-purple-100/10 transition"
+                        onclick="closeMenu()">Services</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block text-center bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-white font-semibold py-3 px-6 mt-2 mb-2 rounded-full shadow hover:from-yellow-500 hover:to-pink-500 transition font-poppins mx-4"
+                        onclick="closeMenu()">Book a Reading</a>
+                </li>
+            </ul>
+        </div>
+        <script>
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            let menuOpen = false;
+            navToggle.addEventListener('click', () => {
+                menuOpen = !menuOpen;
+                if (menuOpen) {
+                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    mobileMenu.classList.add('opacity-100');
+                } else {
+                    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                    mobileMenu.classList.remove('opacity-100');
+                }
+            });
+            function closeMenu() {
+                menuOpen = false;
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100');
+            }
+            // Optional: Close menu on resize to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) closeMenu();
+            });
+        </script>
+    </nav>
+
+    <!-- Booking Form Section -->
+    <main class="pt-32 pb-20 flex items-center justify-center min-h-screen fade-in">
+        <div class="w-full max-w-xl bg-white rounded-3xl shadow-2xl px-8 py-12 md:px-12 md:py-14 relative z-10">
+            <h1 class="text-3xl md:text-4xl font-bold font-poppins text-center text-[#1a0f1a] mb-2">Book Your Tarot
+                Reading</h1>
+            <p class="text-center text-lg text-purple-700 font-economica mb-8">We’re excited to guide you on your
+                journey. Please fill out the form below to reserve your session.</p>
+            <form class="space-y-6" autocomplete="off">
+                <div>
+                    <label for="name" class="block font-poppins text-[#1a0f1a] mb-1">Full Name</label>
+                    <input required id="name" name="name" type="text" placeholder="Your full name"
+                        class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition" />
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="phone" class="block font-poppins text-[#1a0f1a] mb-1">Phone Number</label>
+                        <input required id="phone" name="phone" type="tel" placeholder="e.g., 9876543210"
+                            class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition" />
+                    </div>
+                    <div>
+                        <label for="email" class="block font-poppins text-[#1a0f1a] mb-1">Email ID</label>
+                        <input required id="email" name="email" type="email" placeholder="you@example.com"
+                            class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="age" class="block font-poppins text-[#1a0f1a] mb-1">Age</label>
+                        <input required id="age" name="age" type="number" min="12" max="120" placeholder="Your age"
+                            class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition" />
+                    </div>
+                    <div>
+                        <label for="gender" class="block font-poppins text-[#1a0f1a] mb-1">Gender</label>
+                        <select id="gender" name="gender" required
+                            class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition">
+                            <option value="" disabled selected>Select gender</option>
+                            <option>Female</option>
+                            <option>Male</option>
+                            <option>Non-binary</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="reading-type" class="block font-poppins text-[#1a0f1a] mb-1">What type of consultation
+                        are you looking for?</label>
+                    <select id="reading-type" name="reading-type" required
+                        class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition">
+                        <option value="" disabled selected>Select a reading type</option>
+                        <option>General Guidance</option>
+                        <option>Love and Relationship</option>
+                        <option>Career/Work</option>
+                        <option>Spiritual Path</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="questions" class="block font-poppins text-[#1a0f1a] mb-1">Specific questions for this
+                        reading (optional)</label>
+                    <textarea id="questions" name="questions" rows="3"
+                        placeholder="Let us know if you have any specific questions or topics..."
+                        class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full button-animate bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-white font-poppins font-bold py-3 px-8 rounded-full shadow-lg text-xl mt-4 hover:from-yellow-500 hover:to-pink-500 transition">
+                    Book Reading
+                </button>
+            </form>
+        </div>
+        <!-- Warm, welcoming background accent -->
+        <div
+            class="absolute top-0 left-0 w-full h-64 bg-gradient-to-br from-yellow-100 via-pink-100 to-purple-100 opacity-70 rounded-b-3xl pointer-events-none -z-10">
+        </div>
+    </main>
+
+    <!-- Footer (reuse your footer) -->
+    <footer id="contact" class="bg-gradient-to-br from-[#1a0f1a] to-[#2c1810] py-12 mt-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Logo centered at the top of the footer -->
+            <div class="flex justify-center mb-6">
+                <img src="moonlit-tarot-high-resolution-logo-transparent.png" alt="Moonlit Tarot Logo"
+                    class="h-12 w-auto object-contain" style="max-height:48px;" />
+            </div>
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-10 mb-8">
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-purple-200 font-poppins font-bold mb-3">Quick Links</h3>
+                    <ul class="space-y-1 text-purple-100 font-economica">
+                        <li><a href="index.html" class="hover:text-purple-200 transition">Home</a></li>
+                        <li><a href="/about.html" class="hover:text-purple-200 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-purple-200 transition">Book Reading</a></li>
+                        <li><a href="/terms.html" class="hover:text-purple-200 transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <!-- Newsletter -->
+                <div class="w-full md:w-auto">
+                    <h3 class="text-purple-200 font-poppins font-bold mb-3">Newsletter</h3>
+                    <p class="text-purple-100 mb-3 font-economica">Stay connected with cosmic insights and special
+                        offers</p>
+                    <form class="flex flex-col sm:flex-row gap-2">
+                        <input type="email" placeholder="Enter your email"
+                            class="flex-1 px-4 py-2 rounded-full bg-white/20 text-white placeholder-purple-200 outline-none focus:ring-2 focus:ring-purple-400 font-economica" />
+                        <button type="button" onclick="alert('Thank you for subscribing!')"
+                            class="px-6 py-2 rounded-full bg-gradient-to-r from-purple-700 to-pink-500 text-white font-poppins font-semibold hover:from-purple-600 hover:to-pink-400 transition">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center pt-6 border-t border-purple-100/20 text-purple-200 font-economica text-sm">
+                &copy; 2025 Moonlit Tarot. All rights reserved. | Illuminating paths since 2020
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
