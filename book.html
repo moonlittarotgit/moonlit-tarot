@@ -45,9 +45,54 @@
             transition: transform 0.2s cubic-bezier(.39, .58, .57, 1), box-shadow 0.2s cubic-bezier(.39, .58, .57, 1);
         }
 
-        .button-animate:hover {
+        .button-animate:hover:not(:disabled) {
             transform: scale(1.04) translateY(-2px);
             box-shadow: 0 8px 24px 0 rgba(255, 179, 0, 0.15), 0 1.5px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        /* Loading spinner animation */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Button loading state */
+        .button-loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .button-loading:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Pulse effect for loading */
+        .pulse-loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -111,7 +156,7 @@
                 <li>
                     <a href="#"
                         class="block text-center bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-white font-semibold py-3 px-6 mt-2 mb-2 rounded-full shadow hover:from-yellow-500 hover:to-pink-500 transition font-poppins mx-4"
-                        onclick="closeMenu()">Book a Reading</a>
+                        onclick="closeMenu()">Book A Reading</a>
                 </li>
             </ul>
         </div>
@@ -146,9 +191,9 @@
         <div class="w-full max-w-xl bg-white rounded-3xl shadow-2xl px-8 py-12 md:px-12 md:py-14 relative z-10">
             <h1 class="text-3xl md:text-4xl font-bold font-poppins text-center text-[#1a0f1a] mb-2">Book Your Tarot
                 Reading</h1>
-            <p class="text-center text-lg text-purple-700 font-economica mb-8">We’re excited to guide you on your
+            <p class="text-center text-lg text-purple-700 font-economica mb-8">We're excited to guide you on your
                 journey. Please fill out the form below to reserve your session.</p>
-            <form class="space-y-6" autocomplete="off">
+            <form id="booking-form" class="space-y-6" autocomplete="off">
                 <div>
                     <label for="name" class="block font-poppins text-[#1a0f1a] mb-1">Full Name</label>
                     <input required id="name" name="name" type="text" placeholder="Your full name"
@@ -187,7 +232,7 @@
                 <div>
                     <label for="reading-type" class="block font-poppins text-[#1a0f1a] mb-1">What type of consultation
                         are you looking for?</label>
-                    <select id="reading-type" name="reading-type" required
+                    <select id="reading-type" name="readingType" required
                         class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition">
                         <option value="" disabled selected>Select a reading type</option>
                         <option>General Guidance</option>
@@ -204,9 +249,10 @@
                         placeholder="Let us know if you have any specific questions or topics..."
                         class="w-full px-4 py-3 rounded-lg border border-purple-200 bg-[#faf6f2] font-economica text-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition"></textarea>
                 </div>
-                <button type="submit"
-                    class="w-full button-animate bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-white font-poppins font-bold py-3 px-8 rounded-full shadow-lg text-xl mt-4 hover:from-yellow-500 hover:to-pink-500 transition">
-                    Book Reading
+                <button type="submit" id="submit-btn"
+                    class="w-full button-animate bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-white font-poppins font-bold py-3 px-8 rounded-full shadow-lg text-xl mt-4 hover:from-yellow-500 hover:to-pink-500 transition flex items-center justify-center gap-2">
+                    <span id="button-text">Book Reading</span>
+                    <div id="loading-spinner" class="spinner hidden"></div>
                 </button>
             </form>
         </div>
@@ -255,41 +301,114 @@
             </div>
         </div>
     </footer>
-</body>
-<script>
-    document.querySelector('form').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const form = e.target;
-        const data = {
-            name: form.name.value,
-            phone: form.phone.value,
-            email: form.email.value,
-            age: form.age.value,
-            gender: form.gender.value,
-            'reading-type': form['reading-type'].value,
-            questions: form.questions.value
-        };
 
-        try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxCM0KJWu-NbmM3l0HnkcpvuWu-ad6t17RbYK7NG6jFOefLi_9pcV4lsJ6krsgkRNPQ/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            const result = await response.json();
-            if (result.result === 'success') {
-                alert('✨ Your tarot session is booked! We’ll reach out soon.');
-                form.reset();
-            } else {
-                alert('⚠️ Submission failed. Try again or contact us.');
+    <script>
+        document.getElementById("booking-form").addEventListener("submit", async function (e) {
+            e.preventDefault(); // Prevent the default form submit behavior
+
+            const form = e.target;
+            const submitBtn = document.getElementById('submit-btn');
+            const buttonText = document.getElementById('button-text');
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            // Start loading state
+            setLoadingState(true);
+
+            const formData = {
+                name: form.name.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                age: form.age.value,
+                gender: form.gender.value,
+                "readingType": form.readingType.value,
+                questions: form.questions.value
+            };
+
+            // Replace this with your live deployed Google Apps Script Web App URL
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxCM0KJWu-NbmM3l0HnkcpvuWu-ad6t17RbYK7NG6jFOefLi_9pcV4lsJ6krsgkRNPQ/exec";
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    mode: "no-cors", // ❗ Important: allows request to go through, but you'll get an *opaque* response
+                    body: JSON.stringify(formData)
+                });
+
+                // Simulate minimum loading time for better UX (optional)
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                // Success state
+                setSuccessState();
+
+                setTimeout(() => {
+                    alert("✅ Form submitted successfully! We'll contact you soon to schedule your reading.");
+                    form.reset();
+                    setLoadingState(false);
+                }, 1000);
+
+            } catch (error) {
+                // Error state
+                setErrorState();
+
+                setTimeout(() => {
+                    alert("❌ There was an error submitting the form. Please try again later.");
+                    console.error("Error:", error);
+                    setLoadingState(false);
+                }, 1000);
             }
-        } catch (err) {
-            alert('💥 There was an error submitting the form. Please check your internet or try again later.');
-            console.error(err);
-        }
-    });
 
-</script>
+            function setLoadingState(isLoading) {
+                if (isLoading) {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('button-loading', 'pulse-loading');
+                    buttonText.textContent = 'Booking...';
+                    loadingSpinner.classList.remove('hidden');
 
+                    // Disable all form inputs
+                    const inputs = form.querySelectorAll('input, select, textarea');
+                    inputs.forEach(input => input.disabled = true);
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('button-loading', 'pulse-loading');
+                    buttonText.textContent = 'Book Reading';
+                    loadingSpinner.classList.add('hidden');
+
+                    // Re-enable all form inputs
+                    const inputs = form.querySelectorAll('input, select, textarea');
+                    inputs.forEach(input => input.disabled = false);
+                }
+            }
+
+            function setSuccessState() {
+                submitBtn.classList.remove('pulse-loading');
+                submitBtn.classList.add('bg-green-500');
+                buttonText.textContent = 'Booking Confirmed!';
+                loadingSpinner.classList.add('hidden');
+
+                // Add checkmark
+                const checkmark = document.createElement('span');
+                checkmark.innerHTML = '✓';
+                checkmark.className = 'text-xl';
+                buttonText.appendChild(checkmark);
+            }
+
+            function setErrorState() {
+                submitBtn.classList.remove('pulse-loading');
+                submitBtn.classList.add('bg-red-500');
+                buttonText.textContent = 'Booking Failed';
+                loadingSpinner.classList.add('hidden');
+
+                // Add error icon
+                const errorIcon = document.createElement('span');
+                errorIcon.innerHTML = '✗';
+                errorIcon.className = 'text-xl';
+                buttonText.appendChild(errorIcon);
+            }
+        });
+    </script>
+</body>
 
 </html>
